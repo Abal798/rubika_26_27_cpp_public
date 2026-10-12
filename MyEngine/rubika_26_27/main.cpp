@@ -11,7 +11,7 @@ int main()
 {
     gData.Init();
 
-    sf::RenderWindow window(sf::VideoMode({ 1080, 720 }), "SFML works!", sf::State::Windowed);
+    sf::RenderWindow window(sf::VideoMode({ 1080, 720 }), "le jeu ou quoi", sf::State::Windowed);
 
     ImGui::SFML::Init(window);
 

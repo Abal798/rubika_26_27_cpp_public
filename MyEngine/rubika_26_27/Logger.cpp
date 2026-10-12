@@ -1,3 +1,4 @@
+// ReSharper disable All
 #include "Logger.h"
 
 #ifdef _USE_IMGUI
