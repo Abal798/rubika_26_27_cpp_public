@@ -120,7 +120,6 @@ void Logger::DrawDebug()
 			default:
 				continue;
 			}
-
 			ImGui::TableSetColumnIndex(0);
 			ImGui::TextColored(color, text);
 			ImGui::TableSetColumnIndex(1);
