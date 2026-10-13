@@ -21,6 +21,12 @@ void Scene::Destroy()
     }
 }
 
+void Scene::AddEntity()
+{
+    Entity entity = Entity();
+    AddEntity(entity);
+}
+
 void Scene::AddEntity(Entity entity)
 {
     entities.push_back(entity);
@@ -31,6 +37,11 @@ void Scene::RemoveEntity(Entity entity)
 {
     std::erase(entities, entity);
     entity.Destroy();
+}
+
+int Scene::GetEntityCount()
+{
+    return entities.size();
 }
 
 void Scene::Draw(sf::RenderWindow& window) const

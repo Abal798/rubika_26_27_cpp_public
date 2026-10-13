@@ -56,20 +56,28 @@ void SceneMgr::DrawDebug()
 {
     ImGui::InputText("Scene Name", sceneName, IM_ARRAYSIZE(sceneName));
 
-    if (ImGui::Button("AddScene"))
+    if (ImGui::Button("Add/Select Scene"))
     {
         std::string sceneNameStr = sceneName; 
 
-        AddScene(sceneNameStr);
+        if (!scenes.contains(sceneNameStr))
+        {
+            AddScene(sceneNameStr);
+            Logger::Info("scene added : " + sceneNameStr);
+        }
+        
         SelectScene(sceneNameStr);
-        Logger::Info("scene added : " + sceneNameStr);
+        Logger::Info("scene Selected : " + sceneNameStr);
 
+        
         sceneName[0] = '\0';
     }
 
-    if (ImGui::BeginTable("jsp", 1, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
+    if (ImGui::BeginTable("jsp", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
     {
-        ImGui::TableSetupColumn("sceneName");
+        ImGui::TableSetupColumn("scene Name");
+        ImGui::TableSetupColumn("Entity Count");
+
         ImGui::TableHeadersRow();
         ImGui::TableNextRow();
 
@@ -83,10 +91,17 @@ void SceneMgr::DrawDebug()
             
             ImGui::TableSetColumnIndex(0);
             ImGui::TextColored(color, scene.first.c_str());
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Text("%d Entities", scene.second->GetEntityCount());
             ImGui::TableNextRow();
 
         }
 
     }
     ImGui::EndTable();
+    
+    if (ImGui::Button("Add Entity On Active Scene"))
+    {
+        activeScene->AddEntity();
+    }
 }

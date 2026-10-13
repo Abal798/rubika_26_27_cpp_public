@@ -367,6 +367,7 @@
       <AdditionalIncludeDirectories>C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\packages\WinPixEventRuntime.1.0.240308001\build\..\Include\WinPixEventRuntime;C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\Dependencies\include\;C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\rubika_26_27\;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="TextureMgr.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +395,7 @@
     <ClInclude Include="Profiler.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
+    <ClInclude Include="TextureMgr.h" />
     <ClInclude Include="TransformComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

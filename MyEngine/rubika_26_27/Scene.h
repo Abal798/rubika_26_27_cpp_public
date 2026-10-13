@@ -23,8 +23,11 @@ public:
 	virtual void Update(float fDeltaTime);
 	virtual void Destroy();
 
+	virtual void AddEntity();
 	virtual void AddEntity(Entity entity);
 	virtual void RemoveEntity(Entity entity);
+	
+	int GetEntityCount();
 	
 	/*
 	 * This function will be removed later, when the rendering system will be more robust. But for now, we need it here.
