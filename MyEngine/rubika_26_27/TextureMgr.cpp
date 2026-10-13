@@ -8,6 +8,8 @@
 #include "Globals.h"
 #include "Logger.h"
 #include "ImGui/imgui.h"
+#include <Imgui/imgui-SFML.h>
+
 
 
 static int ReadInt(const rapidxml::xml_node<>* node, const char* name, int defaultValue = 0)
@@ -26,8 +28,14 @@ static float ReadFloat(const rapidxml::xml_node<>* node, const char* name, float
 void TextureMgr::Init()
 {
     m_DefaultTextureData = TextureData();
-    if (LoadTexture("C:/Users/b.berger/Documents/GitHub/rubika_26_27_cpp_public/MyEngine/Ressources/Antonio_Belpaese.png")) Logger::Info("ca marche");
-    else Logger::Error("ca marche pas");
+    LoadTexture("../Ressources/Antonio_Belpaese.png");
+    LoadTexture("../Ressources/enemy_texture_1.png");
+    LoadTexture("../Ressources/enemy_texture_2.png");
+    LoadTexture("../Ressources/enemy_texture_3.png");
+    LoadTexture("../Ressources/enemy_texture_4.png");
+    LoadTexture("../Ressources/enemy_texture_5.png");   
+    LoadTexture("../Ressources/IsaacSprite.png");
+    LoadTexture("../Ressources/sample4k.png");
     
     gData.DebugMgr->RegisterDebugableWindow("textures manager", this);
 
@@ -122,16 +130,19 @@ const TextureData& TextureMgr::GetTextureData(const std::string& name) const
 
 void TextureMgr::DrawDebug()
 {
-    if (ImGui::BeginTable("jsp", 1, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
+    if (ImGui::BeginTable("jsp", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
     {
-        ImGui::TableSetupColumn("img loaded");
+        ImGui::TableSetupColumn("img name");
+        ImGui::TableSetupColumn("img");
         ImGui::TableHeadersRow();
         ImGui::TableNextRow();
 
-        for (const auto key : m_Textures | std::views::keys)
+        for (const auto& data : m_Textures)
         {
             ImGui::TableSetColumnIndex(0);
-            ImGui::Text(key.c_str());
+            ImGui::Text(data.first.c_str());
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Image(data.second.Texture);
             ImGui::TableNextRow();
         }
     }
