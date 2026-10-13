@@ -4,9 +4,12 @@
 
 #include <filesystem>
 #include <string>
+#include <unordered_map>
 
 #include <rapidxml/rapidxml.hpp>
 #include <rapidxml/rapidxml_utils.hpp>
+
+#include "DebugMgr.h"
 
 struct AnimationData
 {
@@ -34,17 +37,19 @@ struct StaticTileData
 
 struct TextureData
 {
-	TextureData();
-	~TextureData();
+	TextureData() = default;
+	~TextureData() = default;
 
 	sf::Texture Texture;
 	// Container of AnimationData AnimationsData;
 	// Container of StaticTileData StaticTilesData;
-
+	std::unordered_map<std::string, AnimationData> AnimationsData;
+	
+	
 	friend class TextureMgr;
 };
 
-class TextureMgr final
+class TextureMgr final : public IDebugable  
 {
 public:
 	void Init();
@@ -62,4 +67,12 @@ public:
 	 * Returns the corresponding TextureData using the name of the texture. Returns the default TextureData in case of an unknown name
 	 */
 	const TextureData& GetTextureData(const std::string& name) const;
+	
+	
+	void DrawDebug() override;
+
+	
+private:
+	std::unordered_map<std::string, TextureData> m_Textures;
+	TextureData m_DefaultTextureData;
 };

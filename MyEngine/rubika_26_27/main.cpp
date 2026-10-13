@@ -25,6 +25,8 @@ int main()
     clock.restart();
     
     SceneMgr sceneMgr = SceneMgr();
+    TextureMgr textureMgr = TextureMgr();
+    textureMgr.Init();
 
     while (window.isOpen())
     {
