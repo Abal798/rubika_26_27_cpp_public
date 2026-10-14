@@ -67,7 +67,7 @@ bool TextureMgr::LoadTexture(const std::filesystem::path& path)
     std::ifstream file(xmlPath);
     if (!file.is_open())
     {
-        Logger::Error("the path points no available .xml file");
+        Logger::Error("[TextureMGR] the path points no available .xml file");
 
         m_Textures.erase(name);
         return false;
@@ -113,7 +113,7 @@ bool TextureMgr::LoadTexture(const std::filesystem::path& path)
     }
     catch (const rapidxml::parse_error&)
     {
-        Logger::Error("probleme happend while parsing xml");
+        Logger::Error("[TextureMGR] probleme happend while parsing xml");
 
         m_Textures.erase(name);
         return false;

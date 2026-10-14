@@ -17,10 +17,6 @@ int main()
 
     ImGui::SFML::Init(window);
 
-    Logger::Info("This is an info message. That is useful");
-    Logger::Warning("This is a warning message. Should I worry?");
-    Logger::Error("This is an error message. Oh sh*t!!");
-
     sf::Clock clock;
     clock.restart();
     
