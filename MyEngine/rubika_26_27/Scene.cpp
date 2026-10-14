@@ -15,28 +15,29 @@ void Scene::Update(float fDeltaTime)
 
 void Scene::Destroy()
 {
-    for (Entity entity : entities)
+    for (Entity* entity : entities)
     {
-        entity.Destroy();
+        entity->Destroy();
     }
+    entities.clear();
 }
 
 void Scene::AddEntity()
 {
-    Entity entity = Entity();
+    Entity* entity = new Entity();
     AddEntity(entity);
 }
 
-void Scene::AddEntity(Entity entity)
+void Scene::AddEntity(Entity* entity)
 {
     entities.push_back(entity);
-    entity.Start();
+    entity->Start();
 }
 
-void Scene::RemoveEntity(Entity entity)
+void Scene::RemoveEntity(Entity* entity)
 {
     std::erase(entities, entity);
-    entity.Destroy();
+    entity->Destroy();
 }
 
 int Scene::GetEntityCount()

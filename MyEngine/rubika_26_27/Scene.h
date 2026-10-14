@@ -24,8 +24,8 @@ public:
 	virtual void Destroy();
 
 	virtual void AddEntity();
-	virtual void AddEntity(Entity entity);
-	virtual void RemoveEntity(Entity entity);
+	virtual void AddEntity(Entity* entity);
+	virtual void RemoveEntity(Entity* entity);
 	
 	int GetEntityCount();
 	
@@ -36,7 +36,7 @@ public:
 	void Draw(sf::RenderWindow& window) const;
 	
 private:
-	std::vector<Entity> entities;
+	std::vector<Entity*> entities;
 	
 };
 

@@ -3,11 +3,13 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transform.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 class IDrawable abstract
 {
 public:
 	IDrawable();
+	IDrawable(sf::Drawable* drawable);
 	virtual ~IDrawable();
 
 	virtual void Start() = 0;

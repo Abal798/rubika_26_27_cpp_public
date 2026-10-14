@@ -3,6 +3,11 @@
 IDrawable::IDrawable() : Visible(true), WorldTransform(sf::Transform::Identity), Drawable(nullptr)
 {}
 
+IDrawable::IDrawable(sf::Drawable* drawable)
+{
+	this->Drawable = drawable;
+}
+
 IDrawable::~IDrawable()
 {}
 

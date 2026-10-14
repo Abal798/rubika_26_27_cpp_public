@@ -10,7 +10,7 @@ public:
 	IComponent() = delete;
 	IComponent(Entity& entity);
 
-	virtual ~IComponent();
+	virtual ~IComponent() = default;
 
 	virtual void Start() = 0;
 
@@ -24,3 +24,7 @@ protected:
 private:
 	Entity& ParentEntity;
 };
+
+inline IComponent::IComponent(Entity& entity) : ParentEntity(entity)
+{
+}

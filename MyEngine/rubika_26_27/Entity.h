@@ -2,6 +2,9 @@
 
 #include <string>
 
+#include "RenderComponent.h"
+#include "TransformComponent.h"
+
 namespace sf
 {
 	class RenderWindow;
@@ -24,4 +27,6 @@ public:
 	void Draw(sf::RenderWindow& window) const;
 	
 	bool operator==(const Entity&) const;
+	TransformComponent transform;
+	RenderComponent render;
 };
