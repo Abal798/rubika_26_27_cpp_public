@@ -35,7 +35,6 @@ void TextureMgr::Init()
     LoadTexture("../Ressources/enemy_texture_4.png");
     LoadTexture("../Ressources/enemy_texture_5.png");   
     LoadTexture("../Ressources/IsaacSprite.png");
-    LoadTexture("../Ressources/sample4k.png");
     
     gData.DebugMgr->RegisterDebugableWindow("textures manager", this);
 

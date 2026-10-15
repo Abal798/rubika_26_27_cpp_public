@@ -19,14 +19,41 @@ public:
 	virtual void Start();
 	virtual void Update(float fDeltaTime);
 	virtual void Destroy();
+	
+	template <typename C>
+	C* AddComponent();
 
-	/*
-	 * This function will be removed later, when the rendering system will be more robust. But for now, we need it here.
-	 * Function that will be called each frame to draw the entity
-	*/
+	template <typename C>
+	C* GetComponent() const;
+	
+	
 	void Draw(sf::RenderWindow& window) const;
 	
 	bool operator==(const Entity&) const;
-	TransformComponent transform;
-	RenderComponent render;
+	std::vector<IComponent*> components; 
 };
+
+template <typename C>
+C* Entity::AddComponent()
+{
+	if (GetComponent<C>() == nullptr)
+	{
+		C* component = new C(*this);
+		components.push_back(component);
+		return component;
+	}
+	return nullptr;
+}
+
+template <typename C>
+C* Entity::GetComponent() const
+{
+	for (auto element : components)
+	{
+		if (auto* component = dynamic_cast<C*>(element))
+		{
+			return component;
+		}
+	}
+	return nullptr;
+}

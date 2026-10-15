@@ -22,16 +22,17 @@ void Scene::Destroy()
     entities.clear();
 }
 
-void Scene::AddEntity()
+Entity* Scene::AddEntity()
 {
     Entity* entity = new Entity();
-    AddEntity(entity);
+    return AddEntity(entity);
 }
 
-void Scene::AddEntity(Entity* entity)
+Entity* Scene::AddEntity(Entity* entity)
 {
     entities.push_back(entity);
     entity->Start();
+    return entity;
 }
 
 void Scene::RemoveEntity(Entity* entity)
@@ -47,4 +48,8 @@ int Scene::GetEntityCount()
 
 void Scene::Draw(sf::RenderWindow& window) const
 {
+    for (Entity* entity : entities)
+    {
+        entity->Draw(window);
+    }
 }

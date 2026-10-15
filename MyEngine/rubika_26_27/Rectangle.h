@@ -9,7 +9,8 @@ public:
     Rectangle();
     void Start() override;
     void Update(float deltaTime) override;
-    void Destroy(float deltaTime) override;
+    void Destroy() override;
+    void SetTexture(const std::string& name);
 
     sf::RectangleShape rectangle;
 };

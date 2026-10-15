@@ -9,6 +9,7 @@ Globals::Globals() : FrameCount(0)
 {
 	DebugMgr = new ::DebugMgr();
 	Logger = new ::Logger();
+	TextureMgr  =  new ::TextureMgr();
 }
 
 Globals::~Globals()
@@ -19,6 +20,7 @@ Globals::~Globals()
 void Globals::Init()
 {
 	Logger->Init();
+	TextureMgr->Init();
 }
 
 void Globals::Shut()

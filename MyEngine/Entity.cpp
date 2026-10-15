@@ -1,7 +1,8 @@
 ﻿#include "Entity.h"
 
-Entity::Entity(std::string friendlyName) : transform(*this)
+Entity::Entity(std::string friendlyName)
 {
+    Start();
 }
 
 Entity::~Entity()
@@ -11,21 +12,39 @@ Entity::~Entity()
 
 void Entity::Start()
 {
-    transform.SetWorldPosition(sf::Vector2(100.f,100.f));
+    for (auto element : components)
+    {
+        element->Start();
+    }
 }
 
 void Entity::Update(float fDeltaTime)
 {
-    render.Draw(fDeltaTime);
+    for (auto element : components)
+    {
+        element->Update(fDeltaTime);
+    }
 }
 
 void Entity::Destroy()
 {
+    for (auto element : components)
+    {
+        element->Destroy();
+    }
     delete this;
 }
 
+
 void Entity::Draw(sf::RenderWindow& window) const
 {
+    for (auto* element : components)
+    {
+        if (auto* drawable = dynamic_cast<RenderComponent*>(element))
+        {
+            drawable->Draw(window);
+        }
+    }
 }
 
 bool Entity::operator==(const Entity& other) const

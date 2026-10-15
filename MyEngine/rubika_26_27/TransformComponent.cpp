@@ -66,7 +66,9 @@ sf::Vector2f TransformComponent::GetScale() const
 }
 
 void TransformComponent::Start()
-{}
+{
+	SetWorldPosition(sf::Vector2f(100.f, 100.f));
+}
 
 void TransformComponent::Update(float fDeltaTime)
 {}

@@ -23,8 +23,8 @@ public:
 	virtual void Update(float fDeltaTime);
 	virtual void Destroy();
 
-	virtual void AddEntity();
-	virtual void AddEntity(Entity* entity);
+	virtual Entity* AddEntity();
+	virtual Entity* AddEntity(Entity* entity);
 	virtual void RemoveEntity(Entity* entity);
 	
 	int GetEntityCount();

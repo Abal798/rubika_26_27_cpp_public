@@ -102,6 +102,10 @@ void SceneMgr::DrawDebug()
     
     if (ImGui::Button("Add Entity On Active Scene"))
     {
-        activeScene->AddEntity();
+        Entity* entity = activeScene->AddEntity();
+        entity->AddComponent<TransformComponent>();
+        RenderComponent* renderer = entity->AddComponent<RenderComponent>();
+        renderer->AddDrawable<Rectangle>();
+        entity->Start();
     }
 }

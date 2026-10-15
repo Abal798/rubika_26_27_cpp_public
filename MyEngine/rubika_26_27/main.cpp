@@ -21,8 +21,7 @@ int main()
     clock.restart();
     
     SceneMgr sceneMgr = SceneMgr();
-    TextureMgr textureMgr = TextureMgr();
-    textureMgr.Init();
+
 
     while (window.isOpen())
     {
@@ -68,6 +67,7 @@ int main()
         PROFILER_EVENT_BEGIN(PROFILER_COLOR_GREEN, "Draw");
         window.clear();
 
+        if (sceneMgr.activeScene)sceneMgr.activeScene->Draw(window);
 #ifdef _USE_IMGUI
         ImGui::SFML::Render(window);
 #endif
