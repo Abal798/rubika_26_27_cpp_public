@@ -10,7 +10,8 @@ public:
     void Start() override;
     void Update(float deltaTime) override;
     void Destroy() override;
-    void SetTexture(const std::string& name);
+    bool SetTexture(const std::string& name);
+    void SetSize(sf::Vector2f size);
 
     sf::RectangleShape rectangle;
 };

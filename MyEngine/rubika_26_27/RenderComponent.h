@@ -20,6 +20,9 @@ public:
     
     template <typename D>
     D* AddDrawable();
+    
+private:
+    Entity* entity;
 };
 
 template <typename D>

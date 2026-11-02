@@ -41,9 +41,8 @@ struct TextureData
 	~TextureData() = default;
 
 	sf::Texture Texture;
-	// Container of AnimationData AnimationsData;
-	// Container of StaticTileData StaticTilesData;
 	std::unordered_map<std::string, AnimationData> AnimationsData;
+	std::unordered_map<std::string, StaticTileData> StaticTilesData;
 	
 	
 	friend class TextureMgr;

@@ -2,7 +2,6 @@
 
 Entity::Entity(std::string friendlyName)
 {
-    Start();
 }
 
 Entity::~Entity()

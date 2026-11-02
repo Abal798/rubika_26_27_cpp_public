@@ -105,7 +105,9 @@ void SceneMgr::DrawDebug()
         Entity* entity = activeScene->AddEntity();
         entity->AddComponent<TransformComponent>();
         RenderComponent* renderer = entity->AddComponent<RenderComponent>();
-        renderer->AddDrawable<Rectangle>();
+        Rectangle* rect = renderer->AddDrawable<Rectangle>();
+        if (!rect->SetTexture("Basement")) Logger::Error("[SceneMGR] wrong texture name");
+        rect->SetSize(sf::Vector2(100.f, 100.f));
         entity->Start();
     }
 }

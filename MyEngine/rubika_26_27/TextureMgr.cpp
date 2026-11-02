@@ -24,6 +24,54 @@ static float ReadFloat(const rapidxml::xml_node<>* node, const char* name, float
     return child ? static_cast<float>(std::atof(child->value())) : defaultValue;
 }
 
+static void ParseAnimations(const rapidxml::xml_node<>* animationsNode, TextureData& data)
+{
+    for (const rapidxml::xml_node<>* node = animationsNode->first_node("Animation");
+         node != nullptr;
+         node = node->next_sibling("Animation"))
+    {
+        const rapidxml::xml_attribute<>* nameAttr = node->first_attribute("Name");
+        if (!nameAttr)
+            continue;
+
+        AnimationData anim;
+        anim.StartX                  = ReadInt(node, "X");
+        anim.StartY                  = ReadInt(node, "Y");
+        anim.SizeX                   = ReadInt(node, "SizeX");
+        anim.SizeY                   = ReadInt(node, "SizeY");
+        anim.OffsetX                 = ReadInt(node, "OffsetX");
+        anim.OffsetY                 = ReadInt(node, "OffsetY");
+        anim.AnimationSpriteCount    = ReadInt(node, "SpriteNum");
+        anim.SpriteOnLine            = ReadInt(node, "SpritesOnLine");
+        anim.IsReverted              = ReadInt(node, "Reverted") != 0;
+        anim.TimeBetweenAnimationInS = ReadFloat(node, "TimeBetweenAnimation");
+
+        data.AnimationsData[nameAttr->value()] = anim;
+    }
+}
+
+static void ParseBackgrounds(const rapidxml::xml_node<>* backgroundsNode, TextureData& data)
+{
+    for (const rapidxml::xml_node<>* node = backgroundsNode->first_node("Tile");
+         node != nullptr;
+         node = node->next_sibling("Tile"))
+    {
+        const rapidxml::xml_attribute<>* nameAttr = node->first_attribute("Name");
+        if (!nameAttr)
+            continue;
+
+        StaticTileData tile;
+        tile.StartX      = ReadInt(node, "X");
+        tile.StartY      = ReadInt(node, "Y");
+        tile.SizeX       = ReadInt(node, "SizeX");
+        tile.SizeY       = ReadInt(node, "SizeY");
+        tile.IsRevertedX = ReadInt(node, "RevertedX") != 0;
+        tile.IsRevertedY = ReadInt(node, "RevertedY") != 0;
+
+        data.StaticTilesData[nameAttr->value()] = tile;
+    }
+}
+
 
 void TextureMgr::Init()
 {
@@ -35,6 +83,8 @@ void TextureMgr::Init()
     LoadTexture("../Ressources/enemy_texture_4.png");
     LoadTexture("../Ressources/enemy_texture_5.png");   
     LoadTexture("../Ressources/IsaacSprite.png");
+    LoadTexture("../Ressources/Basement.png");
+
     
     gData.DebugMgr->RegisterDebugableWindow("textures manager", this);
 
@@ -52,6 +102,7 @@ bool TextureMgr::LoadTexture(const std::filesystem::path& path)
 
     TextureData& data = m_Textures[name];
     data.AnimationsData.clear();
+    data.StaticTilesData.clear();
 
     if (!data.Texture.loadFromFile(path.string()))
     {
@@ -80,43 +131,29 @@ bool TextureMgr::LoadTexture(const std::filesystem::path& path)
         rapidxml::xml_document<> doc;
         doc.parse<0>(buffer.data());
 
-        const rapidxml::xml_node<>* animationsNode = doc.first_node("Animations");
-        if (!animationsNode)
+        const rapidxml::xml_node<>* animationsNode   = doc.first_node("Animations");
+        const rapidxml::xml_node<>* backgroundsNode  = doc.first_node("Backgrounds");
+
+        if (!animationsNode && !backgroundsNode)
         {
+            Logger::Error("[TextureMGR] xml has neither <Animations> nor <Backgrounds> root");
             m_Textures.erase(name);
             return false;
         }
 
-        for (const rapidxml::xml_node<>* node = animationsNode->first_node("Animation");
-             node != nullptr;
-             node = node->next_sibling("Animation"))
-        {
-            const rapidxml::xml_attribute<>* nameAttr = node->first_attribute("Name");
-            if (!nameAttr)
-                continue;
+        if (animationsNode)
+            ParseAnimations(animationsNode, data);
 
-            AnimationData anim;
-            anim.StartX                = ReadInt(node, "X");
-            anim.StartY                = ReadInt(node, "Y");
-            anim.SizeX                 = ReadInt(node, "SizeX");
-            anim.SizeY                 = ReadInt(node, "SizeY");
-            anim.OffsetX               = ReadInt(node, "OffsetX");
-            anim.OffsetY               = ReadInt(node, "OffsetY");
-            anim.AnimationSpriteCount  = ReadInt(node, "SpriteNum");
-            anim.SpriteOnLine          = ReadInt(node, "SpritesOnLine");
-            anim.IsReverted            = ReadInt(node, "Reverted") != 0;
-            anim.TimeBetweenAnimationInS = ReadFloat(node, "TimeBetweenAnimation");
-
-            data.AnimationsData[nameAttr->value()] = anim;
-        }
+        if (backgroundsNode)
+            ParseBackgrounds(backgroundsNode, data);
     }
     catch (const rapidxml::parse_error&)
     {
         Logger::Error("[TextureMGR] probleme happend while parsing xml");
-
         m_Textures.erase(name);
         return false;
     }
+
 
     return true;
 }
@@ -139,12 +176,12 @@ void TextureMgr::DrawDebug()
         for (const auto& data : m_Textures)
         {
             ImGui::TableSetColumnIndex(0);
-            ImGui::Text(data.first.c_str());
+            ImGui::TextUnformatted(data.first.c_str());
             ImGui::TableSetColumnIndex(1);
             ImGui::Image(data.second.Texture);
             ImGui::TableNextRow();
         }
+        ImGui::EndTable();
     }
-    ImGui::EndTable();
 
 }
