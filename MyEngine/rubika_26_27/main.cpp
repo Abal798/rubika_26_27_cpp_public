@@ -8,6 +8,7 @@
 #include <DebugMgr.h>
 
 #include "SceneMgr.h"
+#include "InputMgr.h"
 
 int main()
 {
@@ -20,8 +21,9 @@ int main()
     sf::Clock clock;
     clock.restart();
     
+    InputMgr inputMgr;
     SceneMgr sceneMgr = SceneMgr();
-
+    
 
     while (window.isOpen())
     {
@@ -59,7 +61,7 @@ int main()
         //ImGui::ShowDemoWindow();
         //Logger::DrawLogger();
         gData.DebugMgr->Draw();
-        
+        inputMgr.Update(fDeltaTimeMS);
         sceneMgr.Update(fDeltaTimeMS);
 
         PROFILER_EVENT_END();

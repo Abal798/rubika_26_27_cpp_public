@@ -24,5 +24,5 @@ private:
 	std::string ActionName;
 	std::size_t ActionNameHash;
 	float Value = 0.f;
-	container<sCallbackInfo> Callbacks
+	std::vector<sCallbackInfo> Callbacks;
 };
