@@ -69,6 +69,8 @@ public:
 	
 	
 	void DrawDebug() override;
+	
+	static const sf::Texture& GetEmptyTexture();
 
 	
 private:

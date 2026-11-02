@@ -11,6 +11,10 @@ void Scene::Start()
 
 void Scene::Update(float fDeltaTime)
 {
+    for (Entity* entity : entities)
+    {
+        entity->Update(fDeltaTime);
+    }
 }
 
 void Scene::Destroy()

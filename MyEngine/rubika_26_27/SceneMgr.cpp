@@ -1,6 +1,7 @@
 ﻿#include "SceneMgr.h"
 
 #include "Globals.h"
+#include "Sprite.h"
 #include "ImGui/imgui.h"
 
 
@@ -105,9 +106,15 @@ void SceneMgr::DrawDebug()
         Entity* entity = activeScene->AddEntity();
         entity->AddComponent<TransformComponent>();
         RenderComponent* renderer = entity->AddComponent<RenderComponent>();
-        Rectangle* rect = renderer->AddDrawable<Rectangle>();
-        if (!rect->SetTexture("Basement")) Logger::Error("[SceneMGR] wrong texture name");
-        rect->SetSize(sf::Vector2(100.f, 100.f));
+        Sprite* body = renderer->AddNewDrawable<Sprite>("Body", sf::Vector2f(2, 0), 0, sf::Vector2f(1, 1));
+        body->SetVisibility(true);
+        body->SetTexture("IsaacSprite");
+        body->SetAnimation("Body_Vertical");
+
+        Sprite* headSprite = renderer->AddNewDrawable<Sprite>("Head", sf::Vector2f(-2.5f, -20), 0, sf::Vector2f(1, 1));
+        headSprite->SetVisibility(true);
+        headSprite->SetTexture("IsaacSprite");
+        headSprite->SetAnimation("Head_Down");
         entity->Start();
     }
 }

@@ -402,6 +402,7 @@
     <ClInclude Include="Profiler.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="RendererComponent.hxx" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="Sprite.h" />

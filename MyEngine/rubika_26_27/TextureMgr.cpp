@@ -164,6 +164,13 @@ const TextureData& TextureMgr::GetTextureData(const std::string& name) const
     return data != m_Textures.end() ? data->second : m_DefaultTextureData;
 }
 
+sf::Texture emptyTexture;
+
+const sf::Texture& TextureMgr::GetEmptyTexture()
+{
+    return emptyTexture;
+}
+
 void TextureMgr::DrawDebug()
 {
     if (ImGui::BeginTable("jsp", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
