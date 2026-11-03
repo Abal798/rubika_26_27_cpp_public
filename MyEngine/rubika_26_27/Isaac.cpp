@@ -1,5 +1,7 @@
 ﻿#include "Isaac.h"
 
+#include "Globals.h"
+#include "Logger.h"
 #include "Sprite.h"
 
 Isaac::Isaac()
@@ -21,4 +23,11 @@ void Isaac::Start()
     headSprite->SetVisibility(true);
     headSprite->SetTexture("IsaacSprite");
     headSprite->SetAnimation("Head_Down");
+    
+    gData.InputMgr->FindInputAction("up")->RegisterCallback("isaacGoUp",[this](float f){this->GoUp(f);}, this);
+}
+
+void Isaac::GoUp(float dir)
+{
+    Logger::Info("isaacGoUp");
 }

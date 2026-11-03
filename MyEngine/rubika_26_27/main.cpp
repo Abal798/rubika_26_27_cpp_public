@@ -21,14 +21,9 @@ int main()
     sf::Clock clock;
     clock.restart();
     
-    InputMgr inputMgr;
     SceneMgr sceneMgr = SceneMgr();
     
-    assert(inputMgr.CreateInputAction("up", sf::Keyboard::Key::Up) == true);
-    assert(inputMgr.CreateInputAction("down", sf::Keyboard::Key::Down) == true);
-    assert(inputMgr.CreateInputAction("left", sf::Keyboard::Key::Left) == true);
-    assert(inputMgr.CreateInputAction("right", sf::Keyboard::Key::Right) == true);
-    
+
 
     while (window.isOpen())
     {
@@ -65,8 +60,8 @@ int main()
         // sample
         //ImGui::ShowDemoWindow();
         //Logger::DrawLogger();
+        gData.Update(fDeltaTimeMS);
         gData.DebugMgr->Draw();
-        inputMgr.Update(fDeltaTimeMS);
         sceneMgr.Update(fDeltaTimeMS);
 
         PROFILER_EVENT_END();

@@ -1,8 +1,9 @@
 ﻿#include "InputMgr.h"
 
+#include <cassert>
+
 InputMgr::InputMgr()
 {
-    Init();
 }
 
 InputMgr::~InputMgr()
@@ -11,6 +12,10 @@ InputMgr::~InputMgr()
 
 void InputMgr::Init()
 {
+    assert(CreateInputAction("up", sf::Keyboard::Key::Up) == true);
+    assert(CreateInputAction("down", sf::Keyboard::Key::Down) == true);
+    assert(CreateInputAction("left", sf::Keyboard::Key::Left) == true);
+    assert(CreateInputAction("right", sf::Keyboard::Key::Right) == true);
 }
 
 void InputMgr::Destroy()
