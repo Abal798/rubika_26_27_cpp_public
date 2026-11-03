@@ -13,6 +13,8 @@ public:
 	void RegisterCallback(const std::string& debugName, std::function<void(float)> callback, void* owner);
 	void UnregisterCallbacks(void* owner);
 
+	float GetValue();
+
 private:
 	struct sCallbackInfo
 	{

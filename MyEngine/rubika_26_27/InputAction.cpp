@@ -30,3 +30,8 @@ void InputAction::UnregisterCallbacks(void* owner)
         return info.Owner == owner;
     });
 }
+
+float InputAction::GetValue()
+{
+    return Value;
+}

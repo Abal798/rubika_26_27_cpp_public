@@ -24,6 +24,11 @@ int main()
     InputMgr inputMgr;
     SceneMgr sceneMgr = SceneMgr();
     
+    assert(inputMgr.CreateInputAction("up", sf::Keyboard::Key::Up) == true);
+    assert(inputMgr.CreateInputAction("down", sf::Keyboard::Key::Down) == true);
+    assert(inputMgr.CreateInputAction("left", sf::Keyboard::Key::Left) == true);
+    assert(inputMgr.CreateInputAction("right", sf::Keyboard::Key::Right) == true);
+    
 
     while (window.isOpen())
     {
@@ -62,6 +67,8 @@ int main()
         //Logger::DrawLogger();
         gData.DebugMgr->Draw();
         inputMgr.Update(fDeltaTimeMS);
+        if (inputMgr.FindInputAction("up")->GetValue() == 1)Logger::Info( std::to_string(inputMgr.FindInputAction("up")->GetValue()));
+
         sceneMgr.Update(fDeltaTimeMS);
 
         PROFILER_EVENT_END();
