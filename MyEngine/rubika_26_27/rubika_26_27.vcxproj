@@ -442,6 +442,7 @@
       <AdditionalIncludeDirectories>C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\packages\WinPixEventRuntime.1.0.240308001\build\..\Include\WinPixEventRuntime;C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\Dependencies\include\;C:\Users\b.berger\Documents\GitHub\rubika_26_27_cpp_public\MyEngine\rubika_26_27\;</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Isaac.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
@@ -629,6 +630,7 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="InputAction.h" />
     <ClInclude Include="InputMgr.h" />
+    <ClInclude Include="Isaac.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Profiler.h" />
     <ClInclude Include="Rectangle.h" />

@@ -67,8 +67,6 @@ int main()
         //Logger::DrawLogger();
         gData.DebugMgr->Draw();
         inputMgr.Update(fDeltaTimeMS);
-        if (inputMgr.FindInputAction("up")->GetValue() == 1)Logger::Info( std::to_string(inputMgr.FindInputAction("up")->GetValue()));
-
         sceneMgr.Update(fDeltaTimeMS);
 
         PROFILER_EVENT_END();
