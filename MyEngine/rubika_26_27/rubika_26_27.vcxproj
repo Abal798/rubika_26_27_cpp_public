@@ -209,6 +209,7 @@
     <ClCompile Include="..\Dependencies\Imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Dependencies\Imgui\imgui_widgets.cpp" />
     <ClCompile Include="DebugMgr.cpp" />
+    <ClCompile Include="DynamicCollideComponent.cpp" />
     <ClCompile Include="Entity.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -624,6 +625,7 @@
     <ClInclude Include="..\Dependencies\include\rapidxml\rapidxml_print.hpp" />
     <ClInclude Include="..\Dependencies\include\rapidxml\rapidxml_utils.hpp" />
     <ClInclude Include="DebugMgr.h" />
+    <ClInclude Include="DynamicCollideComponent.h" />
     <ClInclude Include="DynamicColliderComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Globals.h" />

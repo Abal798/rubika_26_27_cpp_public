@@ -60,4 +60,3 @@ protected:
     TransformComponent* Transform;
 };
 
-#include "RendererComponent.hxx"
