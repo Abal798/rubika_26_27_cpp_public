@@ -2,12 +2,19 @@
 
 #include <cassert>
 
+#include "Globals.h"
+#include "ImGui/imgui.h"
+
 InputMgr::InputMgr()
 {
+    gData.DebugMgr->RegisterDebugableWindow("Inputs", this);
+
 }
 
 InputMgr::~InputMgr()
 {
+    gData.DebugMgr->UnregisterDebugableWindow("Inputs");
+
 }
 
 void InputMgr::Init()
@@ -29,12 +36,38 @@ void InputMgr::Update(float dt)
     {
         if (sf::Keyboard::isKeyPressed(element.first))
         {
-            FindInputAction(element.second)->SetValue(1);
+            InputAction* action = FindInputAction(element.second);
+            action->SetValue(1);
+            action->InvokeCallbacks(action->GetValue());
         }
         else
         {
             FindInputAction(element.second)->SetValue(0);
         }
+    }
+}
+
+void InputMgr::DrawDebug()
+{
+    
+    
+    if (ImGui::BeginTable("jsp", 2, ImGuiTableFlags_Resizable | ImGuiTableFlags_NoSavedSettings | ImGuiTableFlags_Borders))
+    {
+        ImGui::TableSetupColumn("input name");
+        ImGui::TableSetupColumn("CallBacks");
+        ImGui::TableHeadersRow();
+        ImGui::TableNextRow();
+
+        for (auto element : keysActions)
+        {
+            ImGui::TableSetColumnIndex(0);
+            ImGui::Text( FindInputAction(element.second)->GetName().c_str());
+            ImGui::TableSetColumnIndex(1);
+            ImGui::Text("%d callBacks" , FindInputAction(element.second)->GetCallbacksCount());
+            ImGui::TableNextRow();
+        }
+        
+        ImGui::EndTable();
     }
 }
 

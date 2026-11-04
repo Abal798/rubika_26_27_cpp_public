@@ -44,7 +44,7 @@ void SceneMgr::SelectScene(const std::string& name)
     auto it = scenes.find(name);
     if (it == scenes.end()) return;
 
-    if (activeScene) activeScene->Destroy();
+    //if (activeScene) activeScene->Destroy();
     activeScene = it->second;
     activeScene->Start();
 }
@@ -99,8 +99,8 @@ void SceneMgr::DrawDebug()
 
         }
 
+        ImGui::EndTable();
     }
-    ImGui::EndTable();
     
     if (ImGui::Button("Add Entity On Active Scene"))
     {

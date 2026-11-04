@@ -12,8 +12,11 @@ public:
 	void SetValue(float value);
 	void RegisterCallback(const std::string& debugName, std::function<void(float)> callback, void* owner);
 	void UnregisterCallbacks(void* owner);
-
+	void InvokeCallbacks(float value);
+	
 	float GetValue();
+	std::string GetName();
+	int GetCallbacksCount();
 
 private:
 	struct sCallbackInfo

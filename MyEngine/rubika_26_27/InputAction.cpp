@@ -31,7 +31,25 @@ void InputAction::UnregisterCallbacks(void* owner)
     });
 }
 
+void InputAction::InvokeCallbacks(float value)
+{
+    for (auto element : Callbacks)
+    {
+        element.Callback(value);
+    }
+}
+
 float InputAction::GetValue()
 {
     return Value;
+}
+
+std::string InputAction::GetName()
+{
+    return ActionName;
+}
+
+int InputAction::GetCallbacksCount()
+{
+    return Callbacks.size();
 }

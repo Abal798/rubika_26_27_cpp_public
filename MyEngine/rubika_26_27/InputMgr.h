@@ -4,9 +4,10 @@
 #include <string>
 #include <SFML/Window/Keyboard.hpp>
 
+#include "DebugMgr.h"
 #include "InputAction.h"
 
-class InputMgr
+class InputMgr : public IDebugable
 {
 public:
     InputMgr();
@@ -15,6 +16,9 @@ public:
     void Init();
     void Destroy();
     void Update(float dt);
+    
+    void DrawDebug() override;
+
     
     bool CreateInputAction(std::string name);
     bool CreateInputAction(std::string name, sf::Keyboard::Key key);
