@@ -9,10 +9,12 @@
 #include <vector>
 #include <string>
 
+#include "IDrawable.h"
+
 class IDrawable;
 class TransformComponent;
 
-class RenderComponent : public IComponent
+class RenderComponent : public IComponent, IDrawable
 {
 public:
     RenderComponent(Entity& entity);
@@ -60,3 +62,4 @@ protected:
     TransformComponent* Transform;
 };
 
+#include "RendererComponent.hxx" //contrairement a ce que dit rider , c'est utile

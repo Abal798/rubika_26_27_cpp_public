@@ -7,6 +7,7 @@ Isaac::Isaac()
 {
     transform = AddComponent<TransformComponent>();
     renderer = AddComponent<RenderComponent>();
+    dynamicCollideComponent = AddComponent<DynamicColliderComponent>();
 }
 
 Isaac::~Isaac()
@@ -35,6 +36,9 @@ void Isaac::Start()
     gData.InputMgr->FindInputAction("down")->RegisterCallback("isaacGoDown",[this](float f){this->GoDown(f);}, this);
     gData.InputMgr->FindInputAction("left")->RegisterCallback("isaacGoLeft",[this](float f){this->GoLeft(f);}, this);
     gData.InputMgr->FindInputAction("right")->RegisterCallback("isaacGoRight",[this](float f){this->GoRight(f);}, this);
+    
+    dynamicCollideComponent->SetSize(sf::Vector2f(10, 20));
+    dynamicCollideComponent->SetOffset(sf::Vector2f(6, -10));
 }
 
 void Isaac::Update(float dt)

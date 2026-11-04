@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "DynamicColliderComponent.h"
 #include "Entity.h"
 #include "Sprite.h"
 
@@ -18,6 +19,7 @@ public:
 private:
     TransformComponent* transform;
     RenderComponent* renderer;
+    DynamicColliderComponent* dynamicCollideComponent;
     
     const float ISAACSPEED = .3f;  
     Sprite* body;

@@ -1,5 +1,7 @@
 ﻿#include "Entity.h"
 
+#include "DynamicColliderComponent.h"
+
 Entity::Entity(std::string friendlyName)
 {
 }
@@ -43,6 +45,13 @@ void Entity::Draw(sf::RenderWindow& window) const
         {
             drawable->Draw(window);
         }
+        
+#ifdef _DEBUG
+        if (auto* col = dynamic_cast<DynamicColliderComponent*>(element))
+        {
+            col->Draw(window);
+        }
+#endif
     }
 }
 
