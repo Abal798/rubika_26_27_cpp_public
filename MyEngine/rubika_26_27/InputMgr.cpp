@@ -19,10 +19,17 @@ InputMgr::~InputMgr()
 
 void InputMgr::Init()
 {
+#ifdef _DEBUG
     assert(CreateInputAction("up", sf::Keyboard::Key::Up) == true);
     assert(CreateInputAction("down", sf::Keyboard::Key::Down) == true);
     assert(CreateInputAction("left", sf::Keyboard::Key::Left) == true);
     assert(CreateInputAction("right", sf::Keyboard::Key::Right) == true);
+#else
+    CreateInputAction("up", sf::Keyboard::Key::Up);
+    CreateInputAction("down", sf::Keyboard::Key::Down);
+    CreateInputAction("left", sf::Keyboard::Key::Left);
+    CreateInputAction("right", sf::Keyboard::Key::Right);
+#endif
 }
 
 void InputMgr::Destroy()

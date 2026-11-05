@@ -56,6 +56,17 @@ void SceneMgr::Update(float fDeltaTime)
 
 void SceneMgr::DrawDebug()
 {
+#ifdef _DEBUG
+    if (ImGui::Button("Show Colliders"))
+    {
+        if (!activeScene)return;
+        for (auto element : activeScene->entities)
+        {
+            element->GetComponent<DynamicColliderComponent>()->showColliders = !element->GetComponent<DynamicColliderComponent>()->showColliders;
+        }
+    }
+#endif
+    
     ImGui::InputText("Scene Name", sceneName, IM_ARRAYSIZE(sceneName));
 
     if (ImGui::Button("Add/Select Scene"))

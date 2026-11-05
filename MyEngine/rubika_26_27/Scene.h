@@ -35,7 +35,6 @@ public:
 	*/
 	void Draw(sf::RenderWindow& window) const;
 	
-private:
 	std::vector<Entity*> entities;
 	
 };

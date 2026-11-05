@@ -37,6 +37,7 @@ public:
 
     
 #ifdef _DEBUG
+    bool showColliders;
     
     sf::RectangleShape rectDebug;
     

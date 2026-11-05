@@ -49,7 +49,7 @@ void Entity::Draw(sf::RenderWindow& window) const
 #ifdef _DEBUG
         if (auto* col = dynamic_cast<DynamicColliderComponent*>(element))
         {
-            col->Draw(window);
+            if (col->showColliders)col->Draw(window);
         }
 #endif
     }

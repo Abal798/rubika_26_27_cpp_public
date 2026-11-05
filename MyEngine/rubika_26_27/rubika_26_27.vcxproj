@@ -446,6 +446,7 @@
     <ClCompile Include="Isaac.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Scene.cpp">
@@ -634,6 +635,7 @@
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="Isaac.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Profiler.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RenderComponent.h" />

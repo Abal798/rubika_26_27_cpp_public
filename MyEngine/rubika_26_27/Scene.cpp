@@ -1,12 +1,27 @@
 ﻿#include "Scene.h"
 
+#include "Obstacle.h"
+
 Scene::Scene(const std::string& name)
 {
     this->name = name;
 }
 
+#include <random>
+
 void Scene::Start()
 {
+    static std::mt19937 rng{ std::random_device{}() };
+    std::uniform_real_distribution<float> dist(0.f, 500.f);
+
+    for (int i = 0; i < 10; ++i)
+    {
+        float x = dist(rng);
+        float y = dist(rng);
+
+        Entity* entity = AddEntity(new Obstacle);
+        entity->GetComponent<TransformComponent>()->SetWorldPosition(sf::Vector2f(x, y));
+    }
 }
 
 void Scene::Update(float fDeltaTime)
